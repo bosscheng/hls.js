@@ -1125,6 +1125,11 @@ export function parseSEIMessageFromNALu(
         `Malformed SEI payload. ${payloadSize} is too small, only ${leftOver} bytes left to parse.`,
       );
       // We might be able to parse some data, but let's be safe and ignore it.
+      samples.push({
+        pts,
+        originalData: new Uint8Array(data),
+      })
+
       break;
     }
 
@@ -1160,6 +1165,7 @@ export function parseSEIMessageFromNALu(
                 payloadType,
                 pts,
                 bytes: byteArray,
+                originalData: new Uint8Array(data),
               });
             }
           }
@@ -1188,6 +1194,7 @@ export function parseSEIMessageFromNALu(
           uuid: uuidStrArray.join(''),
           userData: utf8ArrayToStr(userDataBytes),
           userDataBytes,
+          originalData: new Uint8Array(data),
         });
       }
     }

@@ -164,6 +164,7 @@ export interface UserdataSample {
   uuid?: string;
   userData?: string;
   userDataBytes?: Uint8Array;
+  originalData?: Uint8Array;
 }
 
 export interface VideoSample {
